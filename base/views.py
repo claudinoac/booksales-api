@@ -1,7 +1,13 @@
 from tornado.web import RequestHandler, HTTPError
-from tornado_sqlalchemy import SessionMixin, as_future
-from book.commands import CreateBookCommand
+from tornado_sqlalchemy import SessionMixin
 from marshmallow.exceptions import ValidationError
+from base.exceptions import CommandError
+import json
+
+
+class ViewError(Exception):
+    pass
+
 
 class BaseView(RequestHandler):
     def write_error(self, status_code, **kwargs):
@@ -19,8 +25,9 @@ class BaseModelView(BaseView, SessionMixin):
 
     def __init__(self, *args, **kwargs):
         if not self.serializer_class:
-            raise ViewError("You have to define serializer_class attribute on {}".format(
-                self.__class__.__name__
+            raise ViewError(
+                "You have to define serializer_class attribute on {}".format(
+                    self.__class__.__name__
                 )
             )
         if not self.model:
@@ -49,6 +56,31 @@ class BaseListView(BaseModelView):
         self.write(instances_data)
 
 
+class BaseModelCreateView(BaseView, SessionMixin):
+    command_dispatcher = None
+    handler_class = None
+
+    def post(self):
+        """Creates a new object in DB using command dispatcher and handler"""
+        try:
+            body_data = json.loads(self.request.body)
+            command = self.command_dispatcher.Schema().load(body_data)
+        except ValidationError as validation_error:
+            self.set_status(400)
+            self.write(validation_error.messages)
+        except json.decoder.JSONDecodeError:
+            self.set_status(400)
+            self.write({"error": "Invalid body message"})
+        else:
+            handler = self.handler_class(self.session)
+            try:
+                command_output = handler.handle(command)
+            except CommandError as command_error:
+                self.set_status(400)
+                command_output = command_error.message
+            else:
+                self.set_status(201)
+            self.write(command_output)
 
 
 class NotFoundView(BaseView):

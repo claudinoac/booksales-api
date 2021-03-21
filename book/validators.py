@@ -1,9 +1,7 @@
 from book.repository import BookRepository
-from book.exceptions import BookValidationError
 
 
 class BookValidator:
-    fields = ['title', 'year', 'price', 'author', 'ISBN', 'language']
     command = None
 
     def __init__(self, command, session):
@@ -23,5 +21,3 @@ class BookValidator:
                 self.command.author
             )}
         return {}
-
-

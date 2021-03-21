@@ -1,17 +1,11 @@
-from settings.development import DATABASE
 from book.models import Book
+from base.repository import BaseRepository
 
-class BookRepository:
-    db_session = None
 
-    def __init__(self, db_session):
-        self.db_session = db_session
-
-    def create_book(self, command):
-       instance = Book(**command.Schema().dump(command))
-       self.db_session.add(instance)
-       self.db_session.commit()
-       return instance
+class BookRepository(BaseRepository):
+    model = Book
 
     def get_book_by_author_and_title(self, author, title):
-        return self.db_session.query(Book).filter_by(author=author, title=title).first()
+        return self.db_session.query(self.model).filter_by(
+            author=author, title=title
+        ).first()
