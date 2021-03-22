@@ -17,7 +17,9 @@ class CustomerValidator:
         """Checks if a customer with the same email exists in the DB"""
         customer = self.repository.get_customer_by_email(self.command.email)
         if customer:
-            return {"duplicated": "Customer with email {} already exists.".format(
-                self.command.email,
-            )}
+            return {
+                "duplicated": "Customer with email {} already exists.".format(
+                    self.command.email,
+                )
+            }
         return {}

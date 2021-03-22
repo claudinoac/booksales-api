@@ -16,8 +16,9 @@ class BookValidator:
     def validate_title_and_author(self):
         book = self.repository.get_book_by_author_and_title(self.command.author, self.command.title)
         if book:
-            return {"duplicated": "Book with title {} and author {} already exists.".format(
-                self.command.title,
-                self.command.author
-            )}
+            return {
+                "duplicated": "Book with title {} and author {} already exists.".format(
+                    self.command.title, self.command.author
+                )
+            }
         return {}

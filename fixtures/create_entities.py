@@ -1,6 +1,6 @@
-import requests
 import json
 
+import requests
 
 CUSTOMER_ADD_URI = "/customers/new"
 SALE_ADD_URI = "/sales/new"
@@ -24,19 +24,19 @@ def insert_customers():
             "first_name": "customer",
             "last_name": "user 1",
             "email": "customer2@user1.com.br",
-            "phone": "555199767676"
+            "phone": "555199767676",
         },
         {
             "first_name": "customer",
             "last_name": "user 2",
             "email": "customer2@user2.com.br",
-            "phone": "555199177643"
+            "phone": "555199177643",
         },
         {
             "first_name": "customer",
             "last_name": "user 3",
             "email": "customer3@user3.com.br",
-            "phone": "555199755675"
+            "phone": "555199755675",
         },
     ]
     print("\n########### CREATING CUSTOMERS ###########\n")
@@ -60,7 +60,7 @@ def insert_books():
             "author": "Maeve Binchy",
             "price": 450.99,
             "year": 1990,
-            "language": "english"
+            "language": "english",
         },
         {
             "ISBN": 9780552159722,
@@ -68,7 +68,7 @@ def insert_books():
             "author": "Dan Brown",
             "price": 740.0,
             "year": 1865,
-            "language": "portuguese"
+            "language": "portuguese",
         },
         {
             "ISBN": 9789022558027,
@@ -76,7 +76,7 @@ def insert_books():
             "author": "Terry Brooks",
             "price": 2350.99,
             "year": 1954,
-            "language": "deutsch"
+            "language": "deutsch",
         },
         {
             "ISBN": 9781841499789,
@@ -84,7 +84,7 @@ def insert_books():
             "author": "Terry Brooks",
             "price": 3600.76,
             "year": 2004,
-            "language": "spanish"
+            "language": "spanish",
         },
         {
             "ISBN": 9781409117933,
@@ -92,7 +92,7 @@ def insert_books():
             "author": "Maeve Binchy",
             "price": 10500.76,
             "year": 2010,
-            "language": "japanese"
+            "language": "japanese",
         },
         {
             "ISBN": 9789460681387,
@@ -105,7 +105,9 @@ def insert_books():
     ]
     print("\n########### CREATING BOOKS ###########\n")
     for book in books_data:
-        print(f"\n########## CREATING BOOK {book['title']} USING ENDPOINT {BOOK_ADD_URI} ###########\n")
+        print(
+            f"\n########## CREATING BOOK {book['title']} USING ENDPOINT {BOOK_ADD_URI} ###########\n"
+        )
         result = requests.post(SERVER_URL + BOOK_ADD_URI, data=json.dumps(book))
         if result.status_code == 201:
             print(f"\n Result data -> {result.json()}\n")
@@ -115,26 +117,16 @@ def insert_books():
 
 def insert_orders():
     sales_data = [
-        {
-            "customer": 2,
-            "books": [2, 3, 4]
-        },
-        {
-            "customer": 1,
-            "books": [1, 6]
-        },
-        {
-            "customer": 1,
-            "books": [4, 3]
-        },
-        {
-            "customer": 3,
-            "books": [1, 2]
-        }
+        {"customer": 2, "books": [2, 3, 4]},
+        {"customer": 1, "books": [1, 6]},
+        {"customer": 1, "books": [4, 3]},
+        {"customer": 3, "books": [1, 2]},
     ]
     print("\n########### CREATING ORDERS ###########\n")
     for sale in sales_data:
-        print(f"\n########## CREATING ORDER USING ENDPOINT {SALE_ADD_URI} ###########\n")
+        print(
+            f"\n########## CREATING ORDER USING ENDPOINT {SALE_ADD_URI} ###########\n"
+        )
         result = requests.post(SERVER_URL + SALE_ADD_URI, data=json.dumps(sale))
         if result.status_code == 201:
             print(f"\n Result data -> {result.json()}\n")
@@ -144,7 +136,9 @@ def insert_orders():
 
 def get_customer(customer_id):
     customer_uri = CUSTOMER_GET_URI.format(customer_id=customer_id)
-    print(f"\n###### GETTING CUSTOMER WITH ID {customer_id} using endpoint {customer_uri} ######")
+    print(
+        f"\n###### GETTING CUSTOMER WITH ID {customer_id} using endpoint {customer_uri} ######"
+    )
     result = requests.get(SERVER_URL + customer_uri)
     print(f"Result data -> {result.json()}")
 

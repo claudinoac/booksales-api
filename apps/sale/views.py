@@ -1,8 +1,8 @@
 from apps.base.views import BaseInstanceView, BaseListView, BaseModelCreateView
-from apps.sale.serializers import SaleSerializer
 from apps.sale.commands import CreateSaleCommand
 from apps.sale.handlers import CreateSaleHandler
 from apps.sale.repository import SaleRepository
+from apps.sale.serializers import SaleSerializer
 
 
 class SaleInstanceView(BaseInstanceView):

@@ -1,6 +1,6 @@
-from apps.sale.repository import SaleRepository
-from apps.customer.repository import CustomerRepository
 from apps.book.repository import BookRepository
+from apps.customer.repository import CustomerRepository
+from apps.sale.repository import SaleRepository
 
 
 class SaleValidator:
@@ -26,16 +26,12 @@ class SaleValidator:
         result_id_list = [book.id for book in books]
         for book_id in self.command.books:
             if book_id not in result_id_list:
-                errors.update({
-                    f"book_{book_id}_invalid": f"Book with id {book_id} does not exist"
-                })
+                errors.update({f"book_{book_id}_invalid": f"Book with id {book_id} does not exist"})
 
         return errors
 
     def validate_customer(self):
         customer = self.customer_repository.get_customer_by_id(self.command.customer)
         if not customer:
-            return {
-                "customer": "The customer with id {} does not exist.".format(self.command.customer)
-            }
+            return {"customer": "The customer with id {} does not exist.".format(self.command.customer)}
         return {}

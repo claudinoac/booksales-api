@@ -9,7 +9,7 @@ A web book ordering system based on Tornado framework and SQLAlchemy ORM.
 
 
 - [Installation](#installation)
-- [Project Architecture](#architecture)
+- [Setup](#setuo)
 - [Contributing](#contributing)
 - [Team](#team)
 - [FAQ](#faq)

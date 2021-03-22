@@ -1,4 +1,5 @@
 from decimal import Decimal
+
 from apps.base.exceptions import SerializerError
 
 
@@ -33,9 +34,7 @@ class BaseSerializer:
             field_data = getattr(data_object, field)
             if isinstance(field_data, Decimal):
                 field_data = "%.2f" % field_data
-            dict_data.update({
-                field: field_data
-            })
+            dict_data.update({field: field_data})
         return dict_data
 
     def as_dict(self):

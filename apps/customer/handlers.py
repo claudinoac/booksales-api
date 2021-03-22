@@ -1,8 +1,8 @@
-from apps.customer.repository import CustomerRepository
-from apps.customer.validators import CustomerValidator
-from apps.customer.exceptions import CustomerValidationError
-from apps.customer.serializers import CustomerSerializer
 from apps.base.handlers import BaseModelCreateHandler
+from apps.customer.exceptions import CustomerValidationError
+from apps.customer.repository import CustomerRepository
+from apps.customer.serializers import CustomerSerializer
+from apps.customer.validators import CustomerValidator
 
 
 class CreateCustomerHandler(BaseModelCreateHandler):

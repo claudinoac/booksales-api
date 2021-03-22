@@ -1,8 +1,10 @@
-from apps.sale.models import Sale
+from decimal import Decimal
+
+from sqlalchemy.sql import func
+
 from apps.base.repository import BaseRepository
 from apps.book.repository import BookRepository
-from decimal import Decimal
-from sqlalchemy.sql import func
+from apps.sale.models import Sale
 
 
 class SaleRepository(BaseRepository):
@@ -13,9 +15,9 @@ class SaleRepository(BaseRepository):
         self.book_repository = BookRepository(self.db_session)
 
     def get_discount_for_customer(self, customer_id):
-        total_sales_amount = self.db_session.query(
-            func.sum(Sale.total_value)
-        ).filter(Sale.customer_id == customer_id).scalar() or Decimal(0)
+        total_sales_amount = self.db_session.query(func.sum(Sale.total_value)).filter(
+            Sale.customer_id == customer_id
+        ).scalar() or Decimal(0)
 
         if total_sales_amount > Decimal(1000):
             if total_sales_amount > Decimal(5000):
@@ -27,15 +29,13 @@ class SaleRepository(BaseRepository):
 
     def create_object(self, command):
         discount = self.get_discount_for_customer(command.customer)
-        new_sale = Sale(
-            customer_id=command.customer
-        )
+        new_sale = Sale(customer_id=command.customer)
         book_list = self.book_repository.get_books_by_id_list(command.books)
         new_sale.books.extend(book_list)
 
         new_sale.total_value = sum([book.price for book in book_list])
         if discount:
-            new_sale.charged_value = new_sale.total_value * Decimal((1 - discount/100))
+            new_sale.charged_value = new_sale.total_value * Decimal((1 - discount / 100))
             new_sale.applied_discount = discount
         else:
             new_sale.charged_value = new_sale.total_value

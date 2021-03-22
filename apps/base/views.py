@@ -1,22 +1,15 @@
-from tornado.web import RequestHandler, HTTPError
-from tornado_sqlalchemy import SessionMixin
-from marshmallow.exceptions import ValidationError
-from apps.base.exceptions import CommandError
 import json
 
+from marshmallow.exceptions import ValidationError
+from tornado.web import HTTPError, RequestHandler
+from tornado_sqlalchemy import SessionMixin
 
-class ViewError(Exception):
-    pass
+from apps.base.exceptions import CommandError, ViewError
 
 
 class BaseView(RequestHandler):
     def write_error(self, status_code, **kwargs):
-        self.finish({
-            'error': {
-                'status_code': status_code,
-                'message': self._reason
-            }
-        })
+        self.finish({"error": {"status_code": status_code, "message": self._reason}})
 
 
 class BaseModelView(BaseView, SessionMixin):
@@ -25,15 +18,9 @@ class BaseModelView(BaseView, SessionMixin):
 
     def __init__(self, *args, **kwargs):
         if not self.serializer_class:
-            raise ViewError(
-                "You have to define serializer_class attribute on {}".format(
-                    self.__class__.__name__
-                )
-            )
+            raise ViewError("You have to define serializer_class attribute on {}".format(self.__class__.__name__))
         if not self.repository_class:
-            raise ViewError("You have to define the repository_class attribute on {}".format(
-                self.__class__.__name__
-            ))
+            raise ViewError("You have to define the repository_class attribute on {}".format(self.__class__.__name__))
         return super(BaseModelView, self).__init__(*args, **kwargs)
 
 
@@ -89,7 +76,4 @@ class BaseModelCreateView(BaseView, SessionMixin):
 
 class NotFoundView(BaseView):
     def get(self, *args, **kwargs):
-        raise HTTPError(
-            status_code=404,
-            reason="Invalid resource path"
-        )
+        raise HTTPError(status_code=404, reason="Invalid resource path")

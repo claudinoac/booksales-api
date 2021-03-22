@@ -1,6 +1,7 @@
-from tests.base import BaseDBTestCase
-from apps.book.views import Book
 import json
+
+from apps.book.views import Book
+from tests.base import BaseDBTestCase
 
 
 class BookTestCase(BaseDBTestCase):

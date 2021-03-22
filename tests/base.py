@@ -1,13 +1,13 @@
+import os
+import sys
+
 from tornado.testing import AsyncHTTPTestCase
-from tornado_sqlalchemy import SQLAlchemy
 from tornado.web import Application
-from urls import routes
+from tornado_sqlalchemy import SQLAlchemy
+
 from alembic.command import upgrade as alembic_upgrade
 from alembic.config import Config as AlembicConfig
-
-import sys
-import os
-
+from urls import routes
 
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')

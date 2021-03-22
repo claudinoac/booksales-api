@@ -1,7 +1,8 @@
 from dataclasses import field
-from marshmallow_dataclass import dataclass
-from marshmallow import validate
 from typing import List
+
+from marshmallow import validate
+from marshmallow_dataclass import dataclass
 
 
 @dataclass(frozen=True)

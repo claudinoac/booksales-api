@@ -2,6 +2,10 @@ class SerializerError(Exception):
     pass
 
 
+class ViewError(Exception):
+    pass
+
+
 class CommandError(Exception):
     message = {"error": "Invalid Command."}
 
