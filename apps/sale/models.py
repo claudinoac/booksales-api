@@ -1,8 +1,8 @@
 from settings.development import DATABASE
 from sqlalchemy import Table, Column, Integer, ForeignKey, Float
 from sqlalchemy.orm import relationship
-from customer.models import Customer
-from book.models import Book
+from apps.customer.models import Customer
+from apps.book.models import Book
 
 
 book_sale_association = Table(

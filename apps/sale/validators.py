@@ -1,6 +1,6 @@
-from sale.repository import SaleRepository
-from customer.repository import CustomerRepository
-from book.repository import BookRepository
+from apps.sale.repository import SaleRepository
+from apps.customer.repository import CustomerRepository
+from apps.book.repository import BookRepository
 
 
 class SaleValidator:

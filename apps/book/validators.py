@@ -1,4 +1,4 @@
-from book.repository import BookRepository
+from apps.book.repository import BookRepository
 
 
 class BookValidator:

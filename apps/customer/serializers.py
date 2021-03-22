@@ -1,4 +1,4 @@
-from base.serializers import BaseSerializer
+from apps.base.serializers import BaseSerializer
 
 
 class CustomerSerializer(BaseSerializer):

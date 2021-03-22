@@ -1,5 +1,5 @@
-from customer.models import Customer
-from base.repository import BaseRepository
+from apps.customer.models import Customer
+from apps.base.repository import BaseRepository
 
 
 class CustomerRepository(BaseRepository):

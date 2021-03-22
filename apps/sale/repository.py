@@ -1,6 +1,6 @@
-from sale.models import Sale
-from base.repository import BaseRepository
-from book.repository import BookRepository
+from apps.sale.models import Sale
+from apps.base.repository import BaseRepository
+from apps.book.repository import BookRepository
 from decimal import Decimal
 from sqlalchemy.sql import func
 

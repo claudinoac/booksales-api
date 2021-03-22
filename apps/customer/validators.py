@@ -1,4 +1,4 @@
-from customer.repository import CustomerRepository
+from apps.customer.repository import CustomerRepository
 
 
 class CustomerValidator:

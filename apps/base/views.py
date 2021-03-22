@@ -1,7 +1,7 @@
 from tornado.web import RequestHandler, HTTPError
 from tornado_sqlalchemy import SessionMixin
 from marshmallow.exceptions import ValidationError
-from base.exceptions import CommandError
+from apps.base.exceptions import CommandError
 import json
 
 

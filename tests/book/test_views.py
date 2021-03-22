@@ -1,12 +1,12 @@
 from tests.base import BaseDBTestCase
-from book.views import Book
+from apps.book.views import Book
 import json
 
 
 class BookTestCase(BaseDBTestCase):
     def setUp(self):
         super(BookTestCase, self).setUp()
-        xuxu=Book(title="xainiro")
+        xuxu = Book(title="xainiro")
         self.session.add(
             xuxu
         )

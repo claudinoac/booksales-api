@@ -1,10 +1,10 @@
-from base.views import BaseInstanceView, BaseListView
-from book.models import Book
-from book.serializers import BookSerializer
-from book.commands import CreateBookCommand
-from book.handlers import CreateBookHandler
-from base.views import BaseModelCreateView
-from book.repository import BookRepository
+from apps.base.views import BaseInstanceView, BaseListView
+from apps.book.models import Book
+from apps.book.serializers import BookSerializer
+from apps.book.commands import CreateBookCommand
+from apps.book.handlers import CreateBookHandler
+from apps.base.views import BaseModelCreateView
+from apps.book.repository import BookRepository
 
 
 class BookInstanceView(BaseInstanceView):

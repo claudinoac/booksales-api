@@ -1,8 +1,8 @@
-from sale.repository import SaleRepository
-from sale.validators import SaleValidator
-from sale.exceptions import SaleValidationError
-from sale.serializers import SaleSerializer
-from base.handlers import BaseModelCreateHandler
+from apps.sale.repository import SaleRepository
+from apps.sale.validators import SaleValidator
+from apps.sale.exceptions import SaleValidationError
+from apps.sale.serializers import SaleSerializer
+from apps.base.handlers import BaseModelCreateHandler
 
 
 class CreateSaleHandler(BaseModelCreateHandler):

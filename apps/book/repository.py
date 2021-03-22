@@ -1,5 +1,5 @@
-from book.models import Book
-from base.repository import BaseRepository
+from apps.book.models import Book
+from apps.base.repository import BaseRepository
 
 
 class BookRepository(BaseRepository):

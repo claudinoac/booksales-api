@@ -1,8 +1,8 @@
-from base.views import BaseInstanceView, BaseListView, BaseModelCreateView
-from customer.serializers import CustomerSerializer
-from customer.handlers import CreateCustomerHandler
-from customer.commands import CreateCustomerCommand
-from customer.repository import CustomerRepository
+from apps.base.views import BaseInstanceView, BaseListView, BaseModelCreateView
+from apps.customer.serializers import CustomerSerializer
+from apps.customer.handlers import CreateCustomerHandler
+from apps.customer.commands import CreateCustomerCommand
+from apps.customer.repository import CustomerRepository
 
 
 class CustomerInstanceView(BaseInstanceView):

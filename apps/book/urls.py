@@ -1,5 +1,5 @@
 from tornado.web import url
-from book import views
+from apps.book import views
 
 routes = [
     url('/books', views.BookListView, name="book:list"),

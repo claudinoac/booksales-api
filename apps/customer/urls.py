@@ -1,5 +1,5 @@
 from tornado.web import url
-from customer import views
+from apps.customer import views
 
 routes = [
     url('/customers', views.CustomerListView, name="customer:list"),
