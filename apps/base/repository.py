@@ -6,7 +6,7 @@ class BaseRepository:
         self.db_session = db_session
 
     def get_by_id(self, object_id):
-        return self.db_session.query(self.model).filter_by(id=object_id)
+        return self.db_session.query(self.model).filter_by(id=object_id).first()
 
     def get_all(self):
         return self.db_session.query(self.model).all()
