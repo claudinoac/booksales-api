@@ -1,18 +1,18 @@
 from base.views import BaseInstanceView, BaseListView, BaseModelCreateView
-from customer.models import Customer
 from customer.serializers import CustomerSerializer
 from customer.handlers import CreateCustomerHandler
 from customer.commands import CreateCustomerCommand
+from customer.repository import CustomerRepository
 
 
 class CustomerInstanceView(BaseInstanceView):
     serializer_class = CustomerSerializer
-    model = Customer
+    repository_class = CustomerRepository
 
 
 class CustomerListView(BaseListView):
     serializer_class = CustomerSerializer
-    model = Customer
+    repository_class = CustomerRepository
 
 
 class CustomerCreateView(BaseModelCreateView):

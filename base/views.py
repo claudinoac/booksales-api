@@ -30,8 +30,8 @@ class BaseModelView(BaseView, SessionMixin):
                     self.__class__.__name__
                 )
             )
-        if not self.model:
-            raise ViewError("You have to define the model attribute on {}".format(
+        if not self.repository_class:
+            raise ViewError("You have to define the repository_class attribute on {}".format(
                 self.__class__.__name__
             ))
         return super(BaseModelView, self).__init__(*args, **kwargs)
@@ -40,7 +40,8 @@ class BaseModelView(BaseView, SessionMixin):
 class BaseInstanceView(BaseModelView):
     def get(self, instance_id=None):
         if instance_id:
-            instance = self.session.query(self.model).filter_by(id=instance_id).first()
+            repository = self.repository_class(self.session)
+            instance = repository.get_by_id(instance_id)
             if not instance:
                 raise HTTPError(404)
             serializer = self.serializer_class(instance)
@@ -50,7 +51,10 @@ class BaseInstanceView(BaseModelView):
 
 class BaseListView(BaseModelView):
     def get(self):
-        instance_list = self.session.query(self.model).all()
+        repository = self.repository_class(self.session)
+        instance_list = repository.get_all()
+        if not instance_list:
+            raise HTTPError(404)
         serializer = self.serializer_class(instance_list, multiple=True)
         instances_data = serializer.as_dict()
         self.write(instances_data)

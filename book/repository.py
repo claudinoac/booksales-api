@@ -9,3 +9,6 @@ class BookRepository(BaseRepository):
         return self.db_session.query(self.model).filter_by(
             author=author, title=title
         ).first()
+
+    def get_books_by_id_list(self, id_list):
+        return self.db_session.query(Book).filter(Book.id.in_(id_list)).all()
