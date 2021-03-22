@@ -1,3 +1,5 @@
+class SerializerError(Exception):
+    pass
 
 
 class CommandError(Exception):

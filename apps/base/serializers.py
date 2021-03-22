@@ -1,7 +1,6 @@
 from decimal import Decimal
+from apps.base.exceptions import SerializerError
 
-class SerializerError(Exception):
-    pass
 
 class BaseSerializer:
     fields = []
@@ -19,7 +18,10 @@ class BaseSerializer:
         self.multiple = multiple
 
     def is_serializable(self, instance, multiple):
-        instance_to_test = instance[0] if multiple else instance
+        try:
+            instance_to_test = instance[0] if multiple else instance
+        except IndexError:
+            return True
         for field in self.fields:
             if not hasattr(instance_to_test, field):
                 return False
