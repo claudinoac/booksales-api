@@ -40,17 +40,19 @@ A web book ordering system based on Tornado framework and SQLAlchemy ORM.
 ---
 ### Available Endpoints
 
-| Endpoint | Available Methods | Description |
-| --------- | ------------|
-| /books     | GET  | Will return a list of all books |
-| /books/< book_id > | GET | Will return info about the book if exists |
-| /books/new |  POST | Will create a new book | 
-| /customers | GET | Will return a list of all customers |
-| /customers/ < customer_id > | GET | Will return info about the customer if exists |
-| /customers/new | POST | Will create a new book |
-| /sales | GET | Will return a list of all orders |
-| /sale/< sale_id > | GET | Will return info about the sale if exists |
-| /sale/new | POST | Will create a new order |
+
+| Endpoint                    | Available Methods | Description                                   |
+| --------------------------- | ----------------- | --------------------------------------------- |
+| /books                      | GET               | Will return a list of all books               |
+| /books/< book_id >          | GET               | Will return info about the book if exists     |
+| /books/new                  |  POST             | Will create a new book                        |  
+| /customers                  | GET               | Will return a list of all customers           |
+| /customers/ < customer_id > | GET               | Will return info about the customer if exists |
+| /customers/new              | POST              | Will create a new book                        |
+| /sales                      | GET               | Will return a list of all orders              |
+| /sale/< sale_id >           | GET               | Will return info about the sale if exists     |
+| /sale/new                   | POST              | Will create a new order                       |
+
 
 ## Fixtures
 
