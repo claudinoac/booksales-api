@@ -1,4 +1,4 @@
-from settings.development import DATABASE
+from settings.base import DATABASE
 from sqlalchemy import Column, BigInteger, Integer, String, Float, SmallInteger, UniqueConstraint
 from sqlalchemy.orm import validates
 

@@ -1,9 +1,15 @@
 from tornado_sqlalchemy import SQLAlchemy
+from tornado.options import options, define
 from os import environ
 
+define(
+    'port',
+    default=environ.get("DEFAULT_PORT", 9090),
+    help='port to listen on'
+)
 
 SETTINGS = {
-    'debug': True,
+    'debug': environ.get("DEBUG", True),
 }
 
 DB = {

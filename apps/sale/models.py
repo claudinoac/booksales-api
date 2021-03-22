@@ -1,4 +1,4 @@
-from settings.development import DATABASE
+from settings.base import DATABASE
 from sqlalchemy import Table, Column, Integer, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from apps.customer.models import Customer

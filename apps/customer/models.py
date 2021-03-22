@@ -1,4 +1,4 @@
-from settings.development import DATABASE
+from settings.base import DATABASE
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
