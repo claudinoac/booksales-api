@@ -1,5 +1,5 @@
 from settings.development import DATABASE
-from sqlalchemy import Column, BigInteger, Integer, String, Float, SmallInteger
+from sqlalchemy import Column, BigInteger, Integer, String, Float, SmallInteger, UniqueConstraint
 from sqlalchemy.orm import validates
 
 
@@ -10,8 +10,9 @@ class Book(DATABASE.Model):
     year = Column('year', SmallInteger, nullable=False)
     price = Column('price', Float(asdecimal=True), nullable=False)
     author = Column('author', String(250), nullable=False)
-    ISBN = Column('ISBN', BigInteger, nullable=False)
+    ISBN = Column('ISBN', BigInteger, nullable=False, unique=True)
     language = Column('language', String(250), nullable=False)
+    UniqueConstraint("title", "author", name="title_author")
 
     def __repr__(self):
         return f"{self.id} - {self.title}"

@@ -9,7 +9,7 @@ class Customer(DATABASE.Model):
     id = Column('id', Integer, primary_key=True, autoincrement=True)
     first_name = Column('first_name', String(250), nullable=False)
     last_name = Column('last_name', String(250), nullable=False)
-    email = Column('email', String(250), nullable=False)
+    email = Column('email', String(250), nullable=False, unique=True)
     phone = Column('phone', String(20), nullable=False)
     sales = relationship("Sale", back_populates="customer")
 
