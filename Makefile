@@ -33,6 +33,9 @@ endif
 init: ## build containers and run fixtures
 	@ make run
 	@ make migrate
+
+.PHONY: populate
+populate: init ## Populate the database
 	@ $(EXEC) python fixtures/create_entities.py
 
 .PHONY : run
