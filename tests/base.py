@@ -1,14 +1,14 @@
-from tornado.testing import AsyncHTTPTestCase, ExpectLog, gen_test
+from tornado.testing import AsyncHTTPTestCase
 from tornado_sqlalchemy import SQLAlchemy
-from sqlalchemy import MetaData
 from tornado.web import Application
 from urls import routes
-import pytest
-from book.models import Book
 from alembic.command import upgrade as alembic_upgrade
 from alembic.config import Config as AlembicConfig
 
-import sys, os
+import sys
+import os
+
+
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
 
@@ -27,5 +27,3 @@ class BaseDBTestCase(AsyncHTTPTestCase):
         self.engine = SQLAlchemy('sqlite:///testdb.sqlite')
         self.session = self.engine.sessionmaker()
         return Application(routes, db=self.engine, debug=True)
-
-
